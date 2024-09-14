@@ -12,4 +12,4 @@ class UserData:
     def generar_id(self):
         id_actual = self.counter
         self.counter += 1
-        return id_act
+        return id_actual
