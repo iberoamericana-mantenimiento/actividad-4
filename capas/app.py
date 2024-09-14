@@ -1,12 +1,12 @@
 #Ejecución de capas para creación de usuarios con nombre, cedula, telefono para una base.
 
-from Data import UserData
+from data import UserData
 from logic import UserService
-from Presentation import UserVist
+from presentation import UserView
 
 if __name__ == "__main__":
-    Data = UserData()
-    logic = UserService(Data)
-    Presentation = UserVist(logic) 
-    Presentation.mostrar_menu()
+    data = UserData()
+    logic = UserService(data)
+    presentation = UserView(logic) 
+    presentation.show_menu()
 

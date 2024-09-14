@@ -1,22 +1,25 @@
 class User:
-    def __init__(self, name, cc, telephone, id_user):
+    # Constructor
+    def __init__(self, name, document, phone, user_id):
         self.name = name
-        self.cc = cc
-        self.telephone = telephone
-        self.id_user = id_user
+        self.document = document
+        self.phone = phone
+        self.user_id = user_id
 
+    # Método para mostrar los datos de un usuario
     def __str__(self):
-        return f"ID: {self.id_user}, Nombre: {self.name}, CC: {self.cc}, Teléfono: {self.telephone}"
+        return f"ID: {self.user_id}, Nombre: {self.name}, Documento: {self.document}, Teléfono: {self.phone}"
 
 class UserService:
+    # Constructor
     def __init__(self, user_data):
         self.user_data = user_data
 
-    def create_User(self, name, cc, telephone):
-        id_user = self.user_data.generar_id()
-        user = User(name, cc, telephone, id_user)
-        self.user_data.add_User(user)
+    def create_user(self, name, document, phone):
+        user_id = self.user_data.generate_user_id()
+        user = User(name, document, phone, user_id)
+        self.user_data.add_user(user)
         return user
     
-    def list_User(self):
-        return self.user_data.obtain_User()
+    def list_users(self):
+        return self.user_data.get_users()
