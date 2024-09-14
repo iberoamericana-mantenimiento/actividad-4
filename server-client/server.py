@@ -1,23 +1,29 @@
-import socket
-import threading
- 
-def handle_client(client_socket):
-    welcome_message = "¡Hola! Ya estás conectado al servidor."
-    client_socket.send(welcome_message.encode('utf-8'))
-    request = client_socket.recv(1024)
-    print(f"Recibido: {request.decode('utf-8')}")
-    client_socket.close()
- 
-def start_server():
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('localhost', 65433))
-    server_socket.listen()
-    print("Servidor conectado al puerto 65433...")
-    while True:
-        client_socket, addr = server_socket.accept()
-        print(f"Conectado a {addr}")
-        client_handler = threading.Thread(target=handle_client, args=(client_socket,))
-        client_handler.start()
- 
-if __name__ == "__main__":
-    start_server()
+# Emulate prices data
+prices = {
+    "manzana": 1000,
+    "pera": 2000,
+    "naranja": 3000,
+    "piña": 4000,
+    "sandia": 5000,
+    "melon": 6000,
+    "banano": 1000,
+    "lulo": 2000,
+    "uva": 3000,
+    "mango": 4000
+}
+
+class Server:
+    def __init__(self):
+        print("Server se ha inicializado en el puerto 5000")
+
+    def get_price(self, product):
+        if product not in prices:
+            return "Producto no encontrado"
+        
+        return prices[product]
+    
+    def get_products(self):
+        return list(prices.keys())
+    
+    def get_prices(self):
+        return prices
