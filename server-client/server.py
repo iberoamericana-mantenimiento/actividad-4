@@ -16,6 +16,16 @@ class Server:
     def __init__(self):
         print("Server se ha inicializado en el puerto 5000")
 
+    def create_product(self, product, price):
+        prices[product] = price
+
+    def update(self, product, new_name, price):
+        prices[new_name] = prices.pop(product)
+        prices[new_name] = price
+
+    def delete(self, product):
+        prices.pop(product)
+
     def get_price(self, product):
         if product not in prices:
             return "Producto no encontrado"

@@ -10,12 +10,43 @@ class Client:
         self.server = Server()
 
     def show_menu(self):
-        print("1. Ver productos")
-        print("2. Ver precios")
-        print("3. Ver precio de un producto")
-        print("4. Salir")
+        print("1. Crear producto")
+        print("2. Editar producto")
+        print("3. Ver productos")
+        print("4. Ver precios")
+        print("5. Ver precio de un producto")
+        print("6. Eliminar producto")
+        print("7. Salir")
         input_option = input("Seleccione una opción: ")
         return input_option
+    
+    def create_product(self):
+        product = input("Ingrese el nombre del producto: ")
+        price = int(input("Ingrese el precio del producto: "))
+        self.server.create_product(product, price)
+        print("Producto creado")
+
+    def update_product(self):
+        self.show_products()
+        product = input("Ingrese el producto a editar: ")
+        db_products = self.server.get_products()
+        if product not in db_products:
+            print("Producto no encontrado")
+            return
+        new_name = input("Ingrese el nuevo nombre: ")
+        price = int(input("Ingrese el nuevo precio: "))
+        self.server.update(product, new_name, price)
+        print("Producto actualizado")
+
+    def delete_product(self):
+        self.show_products()
+        product = input("Ingrese el producto a eliminar: ")
+        db_products = self.server.get_products()
+        if product not in db_products:
+            print("Producto no encontrado")
+            return
+        self.server.delete(product)
+        print("Producto eliminado")
     
     def show_products(self):
         products = self.server.get_products()
